@@ -13,29 +13,29 @@ def has_multiple_components(mask):
     return num_labels > 2
 
 def show_bbox(image, bbox, classes, thickness=2):
-    # 确保输入图像是RGB格式
-    if len(image.shape) == 2:  # 灰度图
+    
+    if len(image.shape) == 2:  
         image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
     elif len(image.shape) == 3:
         if image.dtype == np.uint8:
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     
-    # BGR格式的颜色
-    if classes == '1':
-        color = (0, 0, 255)  # 红色
-    elif classes == '0':
-        color = (255, 0, 0)  # 蓝色
-    elif classes == 'TD':
-        color = (26, 221, 26)  # 绿色
     
+    if classes == '1':
+        color = (0, 0, 255)  
+    elif classes == '0':
+        color = (255, 0, 0)  
+    elif classes == 'TD':
+        color = (26, 221, 26)  
+        
     x1, y1, width, height = bbox
     x2 = x1 + width
     y2 = y1 + height
     
-    # 绘制边框
+    
     image = cv2.rectangle(image, (int(x1), int(y1)), (int(x2), int(y2)), color, thickness)
     
-    # 转回RGB格式
+    
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     
     return image
@@ -246,8 +246,8 @@ Please provide a comprehensive fluorescence evaluation addressing these points.N
 
 def analyze_ddpcr_image(url, prompt):
     client = OpenAI(
-        api_key = "sk-GlGjjAByHVYxAwON11A703D222184f4984830a680eE5B11b",
-        base_url = "https://chatapi.onechats.top/v1"
+        api_key = OPENAI_API_KEY,
+        base_url = OPENAI_BASE_URL
     )
     
     messages = [
@@ -281,8 +281,8 @@ def analyze_ddpcr_image(url, prompt):
     
 def analyze_ddpcr_image_LLM(prompt):
     client = OpenAI(
-        api_key = "sk-GlGjjAByHVYxAwON11A703D222184f4984830a680eE5B11b",
-        base_url = "https://chatapi.onechats.top/v1"
+        api_key = OPENAI_API_KEY,
+        base_url = OPENAI_BASE_URL
     )
     
     messages = [
