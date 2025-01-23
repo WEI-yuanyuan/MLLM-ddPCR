@@ -32,7 +32,9 @@ Before using, configure the following parameters in `config.py`:
 
 1. Launch the application:
 
+```bash
 python gui.py
+```
 
 2. Input URLs for three images in the interface:
    - Fluorescence image
